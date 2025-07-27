@@ -34,10 +34,10 @@ mpl.rcParams.update({
     'font.family': 'Arial',
     'axes.titlesize': 22,
     'axes.labelsize': 22,
-    'xtick.labelsize': 24,
-    'ytick.labelsize': 24,
+    'xtick.labelsize': 22,
+    'ytick.labelsize': 22,
     'legend.fontsize': 22,
-    'figure.titlesize': 24
+    'figure.titlesize': 22
 })
 sns.set_style("white")
 sns.despine(trim=True)
@@ -62,7 +62,7 @@ palette_fg = dict(zip(feature_groups, sns.color_palette("colorblind", len(featur
 # Save path setup
 os.makedirs(savepath, exist_ok=True)
 
-fig, axes = plt.subplots(1, len(models_of_interest), figsize=(12 * len(models_of_interest), 8), sharey=True)
+fig, axes = plt.subplots(1, len(models_of_interest), figsize=(7 * len(models_of_interest), 9), sharey=True)
 
 if len(models_of_interest) == 1:
     axes = [axes]
@@ -86,15 +86,15 @@ for ax, model in zip(axes, models_of_interest):
         bars = ax.bar(x + i*bar_width, means, width=bar_width, yerr=stds, capsize=5,
                       label=fg, color=palette_fg[fg], edgecolor='k')
 
-    ax.set_title(f"{model}", fontsize=20, fontweight='bold')
+    ax.set_title(f"{model}", fontsize=22)
     ax.set_xticks(x + total_width/2 - bar_width/2)
-    ax.set_xticklabels(facilities, fontsize=18, rotation=45, ha='right')
-    ax.tick_params(axis='y', labelsize=16)
+    ax.set_xticklabels(facilities, fontsize=20, rotation=45, ha='right')
+    ax.tick_params(axis='y', labelsize=20)
     ax.set_ylim(0, None)
     ax.grid(axis='y', linestyle='--', alpha=0.7)
     ax.minorticks_on()
     if ax == axes[0]:
-        ax.set_ylabel("Generator On-Time Detection Error (\%)", fontsize=20)
+        ax.set_ylabel("Generator On-Time Detection Error (\%)", fontsize=20, fontweight='bold')
 
     ax.legend_.remove() if ax.get_legend() else None
 
@@ -112,20 +112,23 @@ fig.legend(
     handles,
     labels,
     title="Feature Group",
-    title_fontsize=12,
-    fontsize=12,
+    title_fontsize=18,
+    fontsize=18,
     loc='center left',
-    bbox_to_anchor=(0.01, 0.5),
+    bbox_to_anchor=(1, 0.5),
     frameon=True
 )
 
 # Shared x-axis label
-fig.text(0.5, 0.04, 'Held Out Facility', ha='center', fontsize=20)
+fig.text(0.5, 0.01, 'Held Out Facility', ha='center', fontsize=20, fontweight='bold')
+#add padding
+
 
 # Layout adjustments (make room for left-side legend)
-plt.tight_layout(rect=[0.2, 0.05, 1, 0.95])  # Leaves more space on the left
+plt.tight_layout()  # Leaves more space on the left
 #add more space
-plt.savefig(f'{savepath}/Generror_With_HMM features_Cross site_tuned.png', dpi=300, bbox_inches='tight')
+# rect=[0.2, 0.05, 1, 0.95]
+plt.savefig(f'{savepath}/Gen_error_With_HMM features_Cross site.png', dpi=300, bbox_inches='tight')
 plt.show()
 
 
@@ -135,10 +138,10 @@ mpl.rcParams.update({
     'font.family': 'Arial',
     'axes.titlesize': 22,
     'axes.labelsize': 22,
-    'xtick.labelsize': 24,
-    'ytick.labelsize': 24,
+    'xtick.labelsize': 22,
+    'ytick.labelsize': 22,
     'legend.fontsize': 22,
-    'figure.titlesize': 24
+    'figure.titlesize': 22
 })
 sns.set_style("white")
 sns.despine(trim=True)
@@ -159,7 +162,7 @@ palette_fg = dict(zip(feature_groups, sns.color_palette("colorblind", len(featur
 # Save path setup
 os.makedirs(savepath, exist_ok=True)
 
-fig, axes = plt.subplots(1, len(models_of_interest), figsize=(8 * len(models_of_interest), 8), sharey=True)
+fig, axes = plt.subplots(1, len(models_of_interest), figsize=(7 * len(models_of_interest), 9), sharey=True)
 
 if len(models_of_interest) == 1:
     axes = [axes]  # Ensure iterable
@@ -186,15 +189,15 @@ for ax, model in zip(axes, models_of_interest):
         bars = ax.bar(x + i*bar_width, means, width=bar_width, yerr=stds, capsize=5,
                       label=fg, color=palette_fg[fg], edgecolor='k')
 
-    ax.set_title(f"{model}", fontsize=20, fontweight='bold')
+    ax.set_title(f"{model}", fontsize=22)
     ax.set_xticks(x + total_width/2 - bar_width/2)
-    ax.set_xticklabels(facilities, fontsize=18, rotation=45, ha='right')
-    ax.tick_params(axis='y', labelsize=16)
+    ax.set_xticklabels(facilities, fontsize=20, rotation=45, ha='right')
+    ax.tick_params(axis='y', labelsize=20)
     ax.set_ylim(0, None)
     ax.grid(axis='y', linestyle='--', alpha=0.7)
     ax.minorticks_on()
     if ax == axes[0]:
-        ax.set_ylabel("F1 score", fontsize=20)
+        ax.set_ylabel("F1 score", fontsize=20, fontweight='bold')
 
     # Remove individual subplot legends
     ax.legend_.remove() if ax.get_legend() else None
@@ -215,10 +218,10 @@ fig.legend(
     handles,
     labels,
     title="Feature Group",
-    title_fontsize=12,
-    fontsize=12,
+    title_fontsize=18,
+    fontsize=18,
     loc='center left',
-    bbox_to_anchor=(0.01, 0.5),
+    bbox_to_anchor=(1, 0.5),
     frameon=True
 )
 #  bbox_to_anchor=(0.01, 0.5),
@@ -227,13 +230,13 @@ fig.legend(
 
 
 # Shared x-axis label
-fig.text(0.5, 0.04, 'Held Out Facility', ha='center', fontsize=20)
+fig.text(0.5, 0.01, 'Held Out Facility', ha='center', fontsize=20, fontweight='bold')
 
 # Layout adjustments (make room for left-side legend)
 # plt.tight_layout(rect=[0.15, 0.05, 1, 0.95])
-plt.tight_layout(rect=[0.2, 0.05, 1, 0.95])  # Leaves more space on the left
-
-plt.savefig(f'{savepath}/F1score_With_HMM features_Cross site.png', dpi=300, bbox_inches='tight')
+plt.tight_layout()  # Leaves more space on the left
+# rect=[0.2, 0.05, 1, 0.95]
+plt.savefig(f'{savepath}/F1_score_With_HMM features_Cross site.png', dpi=300, bbox_inches='tight')
 plt.show()
 
 
